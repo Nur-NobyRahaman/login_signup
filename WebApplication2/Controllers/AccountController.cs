@@ -9,7 +9,7 @@ namespace WebApplication2.Controllers
     public class AccountController : Controller
     {
         // GET: Account
-        public ActionResult login()
+        public ActionResult signup()
         {
             return View();
         }
