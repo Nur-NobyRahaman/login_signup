@@ -6,6 +6,26 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <style>
+        #dvLeftBar ul
+        {
+        padding: 5px 5px;
+        }
+        #dvLeftBar ul li {
+                padding: 5px 5px;
+                border-radius:5px;
+               
+                list-style: none;
+                margin:8px 0px;
+                
+
+          }
+        #dvLeftBar ul li:hover{
+            background-color:darkgray;
+           
+            }
+        
+    </style>
 </head>
 <body>
     <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
@@ -24,13 +44,26 @@
             </div>
         </div>
     </nav>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
+    <div id="dvLeftBar" style=" width: 200px; position: fixed; left: 0px; top: 56px; bottom: 0px; background-color: darkslategrey">
+        <div  style="padding:5px; color:white">
+            <ul>
+                <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                <li>@Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                <li>@Html.ActionLink("Dashboard", "Dashboard", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+            </ul>
+        </div>      
+    </div>            
+    <div id="dvContentWapper" style=" position:fixed; left:200px;right:0px;top:56px;bottom:0px; background-color:antiquewhite">
+        <div class="container body-content">
+            @RenderBody()
+            <hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            </footer>
+        </div>
     </div>
+    
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
