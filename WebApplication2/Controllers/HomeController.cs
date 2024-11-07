@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Xml.Linq;
+using WebApplication2.Models;
 
 namespace WebApplication2.Controllers
 {
@@ -14,6 +16,27 @@ namespace WebApplication2.Controllers
         }
         public ActionResult Dashboard()
         {
+            if (Session["user"] != null)
+            {
+
+                List<BaseEquipment> plsData = BaseEquipment.ListEquipmentData();
+                ViewBag.plsData = plsData;
+                ViewBag.txtName = "";
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("login", "Account");
+            }
+        }
+        [HttpPost]
+        public ActionResult Dashboard(FormCollection frm, string btnSubmit)
+        {
+            List<BaseEquipment> plsData = BaseEquipment.ListEquipmentData();
+            ViewBag.plsData = plsData;
+            ViewBag.txtName = "";
+            if (btnSubmit == "Search")
+            ViewBag.txtName = frm["txtName"].Trim();
             return View();
         }
 
