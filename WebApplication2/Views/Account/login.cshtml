@@ -33,6 +33,14 @@
                 });
             }
 
+            if (loginMegs == "Login Successfully") {
+                setTimeout(function(){
+                     window.location.href='@Url.Action("Dashboard","Home")'
+                },1000)
+
+            }
+
+
         })
 
     </script>

@@ -21,23 +21,33 @@ namespace WebApplication2.Controllers
         public ActionResult login(string btnSubmit, BaseAccount baseAccount)
         {
             string LoginMegs="";
-            if(btnSubmit == "Login")
+            if (baseAccount.UserName != null && baseAccount.Password != null)
             {
-                bool verifyStatus = baseAccount.VerifyLogin();
-                if (verifyStatus)
+               
+                if (btnSubmit == "Login")
                 {
-                    Session["user"] = baseAccount.UserName;
-                    LoginMegs = "successfully";
-                    //return RedirectToAction("Dashboard", "Home");
-                }
-                else
-                {
-                    LoginMegs = "Failed, username/password not match";
+                    bool verifyStatus = baseAccount.VerifyLogin();
+                    if (verifyStatus)
+                    {
+                        Session["user"] = baseAccount.UserName;
+                        LoginMegs = "Login Successfully";
+                        //return RedirectToAction("Dashboard", "Home");
+                    }
+                    else
+                    {
+                        LoginMegs = "Failed, username/password not match";
+                    }
                 }
             }
-            
-           
-            else if(btnSubmit =="Forget Password")
+            if (baseAccount.UserName == null && baseAccount.Password == null)
+            {
+                LoginMegs = "Enter valid userName and password";
+            }
+
+
+
+
+                if (btnSubmit =="Forget Password")
             {
                 return RedirectToAction("forget", "Account");
             }

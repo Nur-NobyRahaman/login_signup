@@ -14,6 +14,7 @@ namespace WebApplication2.Models
         public string Password { get; set; }
         public bool VerifyLogin()
         {
+           
             DataTable dataTable = new DataTable();
 
             string ConnString = ConfigurationManager.ConnectionStrings["ConnString"].ConnectionString;
@@ -50,6 +51,8 @@ namespace WebApplication2.Models
                 return true;
             }
             return false;
+
+            
         }
     }
 
