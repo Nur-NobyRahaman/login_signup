@@ -6,31 +6,50 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    <style>
-        #dvLeftBar ul
-        {
-        padding: 5px 5px;
-        }
-        #dvLeftBar ul li {
-                padding: 5px 5px;
-                border-radius:5px;
-               
-                list-style: none;
-                margin:8px 0px;
-                
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.14.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
 
-          }
-       
-        #dvLeftBar ul li:hover{
-            background-color:darkgray;
-           
+    @*from jquery ui cdm minifide*@
+    <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.min.js"
+            integrity="sha256-AlTido85uXPlSyyaZNsjJXeCs07eSv3r43kyCVc8ChI="
+            crossorigin="anonymous"></script>
+    <style>
+        #dvLeftBar ul {
+            padding: 5px 5px;
+        }
+
+            #dvLeftBar ul li {
+                padding: 5px 5px;
+                border-radius: 5px;
+                list-style: none;
+                margin: 8px 0px;
             }
-        
+
+                #dvLeftBar ul li:hover {
+                    background-color: darkgray;
+                }
     </style>
+    <script>
+      var GlobaMegs = "Login as @Session["user"]"
+        //$(document).ready(function () {
+        //    if (GlobaMegs != "") {
+        //        $("#pGlobalMegs").html(GlobaMegs)
+        //        $("#dvPartialGlobaMegs").dialog({
+        //            resizable: false,
+        //            height: "auto",
+        //            width: 400,
+        //            modal: true,
+        //        });
+        //    }
+            
+        //})
+    </script>
 </head>
 <body>
-    <nav   class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
-        <div  class="container">
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
+        <div class="container">
 
             @Html.ActionLink("Logn & Sign up", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
@@ -43,7 +62,7 @@
                     <li>@Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
                 </ul>
-              
+
             </div>
             <div class="d-flex">
                 <h5 class="text-light p-2">Hi,  @Session["user"]</h5>
@@ -56,28 +75,29 @@
         </div>
     </nav>
     <div id="dvLeftBar" style=" width: 200px; position: fixed; left: 0px; top: 56px; bottom: 0px; background-color: darkslategrey">
-        <div  style="padding:5px; color:white">
+        <div style="padding:5px; color:white">
             <ul>
                 <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
                 <li>@Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
                 <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
                 <li>@Html.ActionLink("Dashboard", "Dashboard", "Home", new { area = "" }, new { @class = "nav-link" })</li>
             </ul>
-        </div>      
-    </div>            
+        </div>
+    </div>
     <div id="dvContentWapper" style=" position:fixed; left:200px;right:0px;top:56px;bottom:0px; background-color:antiquewhite; overflow:auto">
         <div class="container body-content">
             @RenderBody()
             <hr />
             <footer>
                 <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+                <button onclick="handleCheck()">check</button>
             </footer>
         </div>
     </div>
-    
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
+
+ 
+    @Html.Partial("~/Views/Common/_PartialGlobalMegs.cshtml")
     @RenderSection("scripts", required: false)
 </body>
 </html>

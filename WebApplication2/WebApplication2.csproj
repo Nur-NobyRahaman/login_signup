@@ -184,6 +184,8 @@
     <Content Include="Views\Account\signup.cshtml" />
     <Content Include="Views\Home\Dashboard.cshtml" />
     <Content Include="Views\Account\forget.cshtml" />
+    <Content Include="Views\Home\_PartialEquipmentEntry.cshtml" />
+    <Content Include="Views\Common\_PartialGlobalMegs.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -27,7 +27,8 @@ namespace WebApplication2.Controllers
                 if (verifyStatus)
                 {
                     Session["user"] = baseAccount.UserName;
-                    return RedirectToAction("Dashboard", "Home");
+                    LoginMegs = "successfully";
+                    //return RedirectToAction("Dashboard", "Home");
                 }
                 else
                 {

@@ -11,10 +11,29 @@
     <title>login</title>
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
     <link href="~/Content/Site.css" rel="stylesheet" />
+    @Scripts.Render("~/bundles/jquery")
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.14.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+
+    @*from jquery ui cdm minifide*@
+    <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.min.js"
+            integrity="sha256-AlTido85uXPlSyyaZNsjJXeCs07eSv3r43kyCVc8ChI="
+            crossorigin="anonymous"></script>
+
     <script>
         var loginMegs = '@ViewBag.loginMegs';
-        if (loginMegs != "")
-        alert(loginMegs);
+
+        $(document).ready(function () {
+            if (loginMegs != "") {
+                console.log(loginMegs)
+                $("#pGlobalMegs").html(loginMegs)
+                $("#dvPartialGlobaMegs").dialog({
+                    resizable: false,
+                    modal: true,
+                });
+            }
+
+        })
 
     </script>
 </head>
@@ -94,5 +113,6 @@
         </div>
     }
 
+   @Html.Partial("~/Views/Common/_PartialGlobalMegs.cshtml")
 </body>
 </html>

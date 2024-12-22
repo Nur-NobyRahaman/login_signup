@@ -21,6 +21,23 @@
         background: #ffd800
     }
 </style>
+<script>
+    function HandleAddEquipment() {
+        
+        $("#dvPartialEntryPanel").dialog({
+            resizable: false,
+            height: 500,
+            width: 1000,
+            modal: true,
+        });
+        return false;
+    }
+
+    
+</script>
+<div>
+  
+</div>
 <form action="/Home/Dashboard" method="post">
     @{
         List<BaseEquipment> plsData = (List<BaseEquipment>)ViewBag.plsData;
@@ -28,7 +45,9 @@
 
 
         <div id="dvTblBorder" style="height:400px; width:500px; overflow:auto">
-            <h4>Equipment List</h4>
+                <div class="d-flex justify-content-between mb-2">
+                    <h4>Equipment List</h4>   <button class="btn btn-primary" name="btnNew" id="btnNew" onclick="return HandleAddEquipment()"> Add Equipment</button>
+                </div>
             <div style="padding:5px">
                 <label>
                     Equiment name
@@ -49,7 +68,7 @@
                 {
                     if (ViewBag.txtName != "")
                     {
-                         if (obj.Name.Contains(ViewBag.txtName))
+                        if (obj.Name.Contains(ViewBag.txtName))
                         {
                             <tr class="trContent">
                                 <td>@obj.No</td>
@@ -78,3 +97,4 @@
 
     }
 </form>
+@Html.Partial("~/Views/Home/_PartialEquipmentEntry.cshtml")
