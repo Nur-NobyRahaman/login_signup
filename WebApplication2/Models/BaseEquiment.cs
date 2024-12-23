@@ -5,13 +5,18 @@ using System.Data.SqlClient;
 using System.Data;
 using System.Linq;
 using System.Web;
+using System.Runtime.Serialization;
 
 namespace WebApplication2.Models
 {
+    [Serializable]
     public class BaseEquipment
     {
+        [DataMember]
         public string Name { get; set; }
+        [DataMember]
         public int EqCount { get; set; }
+        [DataMember]
         //public int No { get; set; }
         public DateTime EntryDate { get; set; }
 

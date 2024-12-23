@@ -64,5 +64,20 @@ namespace WebApplication2.Controllers
 
             return View();
         }
+
+        // internal api
+        [HttpGet]
+        public ActionResult LstEquipment()
+        {
+            List<BaseEquipment> plsData = BaseEquipment.ListEquipmentData();
+            // linku 
+            var plist = (from e in plsData select new
+            {
+                Name = e.Name,
+                Quantity = e.EqCount.ToString(),
+                EntryDate = e.EntryDate.ToString("MM-dd-yyyy"),
+            }).ToList();
+            return Json(plist, JsonRequestBehavior.AllowGet);
+        }
     }
 }
