@@ -1,34 +1,59 @@
-﻿<div id="dvPartialEntryPanel" style="display:none" title="Add a new equipment">
-    <div class="row mt-4" >
-        <div class="col col-sm-2">
-          
+﻿<script>
+    $(function () {
+        $("#textEntryDate").datepicker({
+            changeMonth: true,
+            changeYear: true
+        });
+    });
+</script>
+<div id="dvPartialEntryPanel" style="display:none" title="Add a new equipment">
+    @using (Html.BeginForm("Dashboard", "Home"))
+    {
+
+        <div class="row mt-4">
+            <div class="col col-sm-2">
+
+            </div>
+            <div class="col col-sm-2">
+                Select Equipment
+            </div>
+            <div class="col col-sm-2">
+                <input type="text" name="textEquipmentName" id="textEquipmentName" placeholder="Enter equipment name"/>
+                @*<select name="ddlEquipmentName">
+                    <option valu="0">Select</option>
+                    <option valu="Laptop 1">Laptop 1</option>
+                    <option valu="2">Laptop 2</option>
+                    <option valu="3">Laptop 3</option>
+                    <option valu="4">Laptop 4</option>
+                </select>*@
+            </div>
+            <div class="col col-sm-1"></div>
+            <div class="col col-sm-1">Quantity</div>
+            <div class="col col-sm-4">
+                <input type="text" name="textQuantity" id="textQuantity" placeholder="Enter quantity"/>
+            </div>
+
         </div>
-        <div class="col col-sm-2" >
-            Select Equipment
+        <div class="row mt-4">
+            <div class="col col-sm-2"> </div>
+            <div class="col col-sm-2">Entry Date</div>
+            <div class="col col-sm-6 ">
+                <input style="width: 100%" type="text" name="textEntryDate" id="textEntryDate" placeholder="Enter entry date"/>
+            </div>
+            <div class="col col-sm-3"> </div>
+
         </div>
-        <div class="col col-sm-2">
-            <select>
-                <option valu="0">Select</option>
-                <option valu="1">Laptop 1</option>
-                <option valu="2">Laptop 2</option>
-                <option valu="3">Laptop 3</option>
-                <option valu="4">Laptop 4</option>
-            </select>
-        </div>
-        <div class="col col-sm-1"></div>
-        <div class="col col-sm-1">Quantity</div>
-        <div class="col col-sm-4">
-            <input type="text" name="textQuantity" id="textQuantity" />
+        <div class="row mt-4">
+            <div class="col col-sm-3"></div>
+
+            <div class="col col-sm-6 d-flex justify-content-center">
+                <input style="width: 100%" type="submit" name="btnSubmit" id="btnSubmit" value="Save Equipment" />
+            </div>
+            <div class="col col-sm-3"> </div>
+
         </div>
 
-    </div>
-    <div class="row mt-4">
-        <div class="col col-sm-3" ></div>
 
-        <div class="col col-sm-6 d-flex justify-content-center" >
-            <input style="width: 100%" type="submit" name="btnPartialSave" id="btnPartialSave" />
-        </div>
-        <div class="col col-sm-3"  > </div>
-
-    </div>
+    }
 </div>
+

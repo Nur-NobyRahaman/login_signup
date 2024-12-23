@@ -32,19 +32,19 @@
                 }
     </style>
     <script>
-      var GlobaMegs = "Login as @Session["user"]"
-        //$(document).ready(function () {
-        //    if (GlobaMegs != "") {
-        //        $("#pGlobalMegs").html(GlobaMegs)
-        //        $("#dvPartialGlobaMegs").dialog({
-        //            resizable: false,
-        //            height: "auto",
-        //            width: 400,
-        //            modal: true,
-        //        });
-        //    }
-            
-        //})
+        var GlobaMegs = "@ViewBag.OperationResult";
+        $(document).ready(function () {
+            if (GlobaMegs != "") {
+                $("#pGlobalMegs").html(GlobaMegs)
+                $("#dvPartialGlobaMegs").dialog({
+                    resizable: false,
+                    height: "auto",
+                    width: 400,
+                    modal: true,
+                });
+            }
+
+        })
     </script>
 </head>
 <body>

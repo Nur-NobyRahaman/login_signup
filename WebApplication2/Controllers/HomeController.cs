@@ -32,6 +32,17 @@ namespace WebApplication2.Controllers
         [HttpPost]
         public ActionResult Dashboard(FormCollection frm, string btnSubmit)
         {
+            if(btnSubmit== "Save Equipment")
+            {
+                BaseEquipment baseEquipment = new BaseEquipment();
+                baseEquipment.Name = frm["textEquipmentName"].Trim().ToString();
+                 baseEquipment.EqCount =Convert.ToInt32(frm["textQuantity"].ToString());
+                baseEquipment.EntryDate = Convert.ToDateTime(frm["textEntryDate"].ToString());
+                int result = baseEquipment.saveEquipment();
+                if (result > 0) {
+                    ViewBag.OperationResult = "Save Successfully";
+                }
+            }
             List<BaseEquipment> plsData = BaseEquipment.ListEquipmentData();
             ViewBag.plsData = plsData;
             ViewBag.txtName = "";
