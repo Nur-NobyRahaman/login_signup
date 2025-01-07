@@ -53,6 +53,7 @@ namespace WebApplication2.Models
             return plsCustomer;
         }
 
+        // get ListCustomerEquipment  
         public static DataTable ListCustomerEquipment()
         {
           
@@ -103,6 +104,30 @@ namespace WebApplication2.Models
 
 
             return dataTable;
+        }
+
+        // insert customer 
+        public int SaveCustomer()
+        {
+            // connect sql database
+            string connecting = ConfigurationManager.ConnectionStrings["ConnString"].ConnectionString;
+            SqlConnection connection = new SqlConnection(connecting);
+            connection.Open();
+
+            SqlCommand cmd =new SqlCommand();
+            cmd.Connection = connection;
+            cmd.CommandText = "dbo.spOST_InsrtCustomer";
+            cmd.Parameters.Clear();
+
+            cmd.Parameters.Add(new SqlParameter("@CustomerName",this.CustomerName));
+            cmd.Parameters.Add(new SqlParameter("@CustomerMobile",this.CustomerMobile));
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandTimeout = 0;
+
+            int result = cmd.ExecuteNonQuery();
+            cmd.Dispose();
+            connection.Close();
+            return result;
         }
 
     }

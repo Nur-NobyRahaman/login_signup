@@ -46,8 +46,21 @@ namespace WebApplication2.Controllers
                     ViewBag.OperationResult = "Save Successfully";
                 }
             }
+            if (btnSubmit == "Save Customer")
+            {
+                BaseCustomer customer = new BaseCustomer();
+                customer.CustomerName = frm["textCustomerName"].Trim().ToString();
+                customer.CustomerMobile = frm["textCustomerPhoneNumber"].Trim().ToString();
+                int result = customer.SaveCustomer();
+                if (result > 0)
+                {
+                    ViewBag.OperationResult = "Save Customer Successfully";
+                }
+            }
             List<BaseEquipment> plsData = BaseEquipment.ListEquipmentData();
             ViewBag.plsData = plsData;
+            DataTable dtCustomerEquip = BaseCustomer.ListCustomerEquipment();
+            ViewBag.dtCustomerEquip = dtCustomerEquip;
             ViewBag.txtName = "";
             if (btnSubmit == "Search")
             ViewBag.txtName = frm["txtName"].Trim();

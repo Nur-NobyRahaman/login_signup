@@ -31,9 +31,20 @@
             width: 1000,
             modal: true,
         });
+       
+        
+        return false;
+
+    }
+    function HandleAddCustomer() {
+        $("#dvPartialCustomerEntryPanel").dialog({
+            resizable: false,
+            height: 500,
+            width: 1000,
+            modal: true,
+        });
         return false;
     }
-
     
 </script>
 <div>
@@ -100,7 +111,7 @@
             </div>
             <div class="col col-sm-4" id="dvTblBorder" style="height: 400px; width: 500px; overflow: auto; ">
                 <table>
-                    <h4>Customer List</h4>
+                    <h4>Customer List</h4> <button class="btn btn-primary" name="btnNew" id="btnNew" onclick="return HandleAddCustomer()"> Add Customer</button>
                     <tr>
                         <th>CustomerId</th>
                         <th>CustomerName</th>
@@ -153,3 +164,5 @@
     }
 </form>
 @Html.Partial("~/Views/Home/_PartialEquipmentEntry.cshtml")
+
+@Html.Partial("~/Views/Home/_PartialCustomerEntry.cshtml")
