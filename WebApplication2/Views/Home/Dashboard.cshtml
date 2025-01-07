@@ -1,4 +1,5 @@
 ﻿@using WebApplication2.Models;
+@using System.Data;
 @{
     ViewBag.Title = "Dashboard";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -39,62 +40,114 @@
   
 </div>
 <form action="/Home/Dashboard" method="post">
+
+
     @{
+        // get data backend to front through List
         List<BaseEquipment> plsData = (List<BaseEquipment>)ViewBag.plsData;
 
-
-
-        <div id="dvTblBorder" style="height:400px; width:500px; overflow:auto">
+        <div class="d-flex justify-content-between"  >
+            <div class="col col-sm-8" id="dvTblBorder" style="height: 400px; width: 500px; overflow: auto;">
                 <div class="d-flex justify-content-between mb-2">
                     <h4>Equipment List</h4>   <button class="btn btn-primary" name="btnNew" id="btnNew" onclick="return HandleAddEquipment()"> Add Equipment</button>
                 </div>
-            <div style="padding:5px">
-                <label>
-                    Equiment name
-                </label>
-                <input type="text" id="txtName" name="txtName" />
-                <input type="submit" value="Search" name="btnSubmit" />
-                <input type="submit" value="Clear" name="btnSubmit" />
-            </div>
-            <table style="width :100%">
-                <tr style="position: sticky; top: 0px; padding:2px">
-                    
-                    <th>No</th>
-                    <th>Name</th>
-                    <th>Count</th>
-                    <th>Entry Date</th>
-                </tr>
-                @foreach (BaseEquipment obj in plsData)
+                <div style="padding:5px">
+                    <label>
+                        Equiment name
+                    </label>
+                    <input type="text" id="txtName" name="txtName" />
+                    <input type="submit" value="Search" name="btnSubmit" />
+                    <input type="submit" value="Clear" name="btnSubmit" />
+                </div>
+                <table style="width :100%">
+                    <tr style="position: sticky; top: 0px; padding:2px">
 
-                {
-                    if (ViewBag.txtName != "")
+                        <th>No</th>
+                        <th>Name</th>
+                        <th>Count</th>
+                        <th>Entry Date</th>
+                    </tr>
+                    @foreach (BaseEquipment obj in plsData)
+
                     {
-                        if (obj.Name.Contains(ViewBag.txtName))
+                        if (ViewBag.txtName != "")
+                        {
+                            if (obj.Name.Contains(ViewBag.txtName))
+                            {
+                                <tr class="trContent">
+
+                                    <td>@obj.EquipmentId</td>
+                                    <td>@obj.Name</td>
+                                    <td>@obj.EqCount</td>
+                                    <td>@obj.EntryDate.ToString()</td>
+                                </tr>
+                            }
+
+                        }
+                        else
                         {
                             <tr class="trContent">
-                              
                                 <td>@obj.EquipmentId</td>
                                 <td>@obj.Name</td>
                                 <td>@obj.EqCount</td>
                                 <td>@obj.EntryDate.ToString()</td>
                             </tr>
                         }
+                    }
+
+
+                </table>
+            </div>
+            <div class="col col-sm-4" id="dvTblBorder" style="height: 400px; width: 500px; overflow: auto; ">
+                <table>
+                    <h4>Customer List</h4>
+                    <tr>
+                        <th>CustomerId</th>
+                        <th>CustomerName</th>
+                        <th>CustomerMobile</th>
+                        <th>EquipCount</th>
+                    </tr>
+                    @{
+                        // get data backend to front through DataTable
+                        System.Data.DataTable dataTable = (System.Data.DataTable)ViewBag.dtCustomerEquip;
+
+
+
+                        // linku
+
+                        var pdata = (from p in dataTable.AsEnumerable()
+                                     select new
+                                     {
+                                         CustomerId = p.Field<int>("CustomerId"),
+                                         CustomerName = p.Field<string>("CustomerName"),
+                                         CustomerMobile = p.Field<string>("CustomerMobile"),
+                                         EquipCount = p.Field<int>("EquipCount"),
+
+                                     }).ToList();
+
+                        foreach (var obj in pdata)
+                        {
+                            <tr>
+                                <td>@obj.CustomerId</td>
+                                <td>@obj.CustomerName</td>
+                                <td>@obj.CustomerMobile</td>
+                                <td>@obj.EquipCount</td>
+                            </tr>
+                        }
 
                     }
-                    else
-                    {
-                        <tr class="trContent">
-                            <td>@obj.EquipmentId</td>
-                            <td>@obj.Name</td>
-                            <td>@obj.EqCount</td>
-                            <td>@obj.EntryDate.ToString()</td>
-                        </tr>
-                    }
-                }
+                </table>
+            </div>
 
 
-            </table>
         </div>
+
+
+
+
+
+        
+        
 
 
     }

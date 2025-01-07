@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -20,6 +21,8 @@ namespace WebApplication2.Controllers
             {
 
                 List<BaseEquipment> plsData = BaseEquipment.ListEquipmentData();
+                DataTable dtCustomerEquip = BaseCustomer.ListCustomerEquipment();
+                ViewBag.dtCustomerEquip = dtCustomerEquip;
                 ViewBag.plsData = plsData;
                 ViewBag.txtName = "";
                 return View();
