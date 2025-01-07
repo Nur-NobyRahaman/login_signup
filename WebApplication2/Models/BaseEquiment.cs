@@ -13,6 +13,8 @@ namespace WebApplication2.Models
     public class BaseEquipment
     {
         [DataMember]
+        public int EquipmentId { get; set; }
+        [DataMember]
         public string Name { get; set; }
         [DataMember]
         public int EqCount { get; set; }
@@ -51,6 +53,7 @@ namespace WebApplication2.Models
             {
                 while (mrd.Read()) { 
                 BaseEquipment obj = new BaseEquipment();
+                    obj.EquipmentId = Convert.ToInt32(mrd["EquimentId"].ToString());
                     obj.Name = mrd["EquipmentName"].ToString();
                     obj.EqCount= Convert.ToInt32(mrd["Quantity"].ToString());
                     obj.EntryDate = Convert.ToDateTime(mrd["EntryDate"].ToString());

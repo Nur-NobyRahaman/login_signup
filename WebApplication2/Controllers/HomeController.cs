@@ -73,6 +73,7 @@ namespace WebApplication2.Controllers
             // linku 
             var plist = (from e in plsData select new
             {
+                EuipmentId= e.EquipmentId,
                 Name = e.Name,
                 Quantity = e.EqCount.ToString(),
                 EntryDate = e.EntryDate.ToString("MM-dd-yyyy"),

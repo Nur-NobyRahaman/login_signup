@@ -59,6 +59,7 @@
             <table style="width :100%">
                 <tr style="position: sticky; top: 0px; padding:2px">
                     
+                    <th>No</th>
                     <th>Name</th>
                     <th>Count</th>
                     <th>Entry Date</th>
@@ -72,6 +73,7 @@
                         {
                             <tr class="trContent">
                               
+                                <td>@obj.EquipmentId</td>
                                 <td>@obj.Name</td>
                                 <td>@obj.EqCount</td>
                                 <td>@obj.EntryDate.ToString()</td>
@@ -82,7 +84,7 @@
                     else
                     {
                         <tr class="trContent">
-                           
+                            <td>@obj.EquipmentId</td>
                             <td>@obj.Name</td>
                             <td>@obj.EqCount</td>
                             <td>@obj.EntryDate.ToString()</td>
