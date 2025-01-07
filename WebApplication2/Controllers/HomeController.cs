@@ -80,5 +80,14 @@ namespace WebApplication2.Controllers
             }).ToList();
             return Json(plist, JsonRequestBehavior.AllowGet);
         }
+
+        [HttpGet]
+        public ActionResult LstCustomer()
+        {
+            List<BaseCustomer> plsCustomer = BaseCustomer.ListCustomer();
+           
+
+            return Json(plsCustomer, JsonRequestBehavior.AllowGet);
+        }
     }
 }

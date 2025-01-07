@@ -127,6 +127,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\BaseAccount.cs" />
+    <Compile Include="Models\BaseCustomer.cs" />
     <Compile Include="Models\BaseEquiment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
