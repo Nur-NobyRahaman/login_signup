@@ -110,8 +110,12 @@
                 </table>
             </div>
             <div class="col col-sm-4" id="dvTblBorder" style="height: 400px; width: 500px; overflow: auto; ">
+
+                <div class="d-flex justify-content-between mb-2">
+                    <h4>Customer List</h4>
+                    <button class="btn btn-primary" name="btnNew" id="btnNew" onclick="return HandleAddCustomer()"> Add Customer</button>
+                </div>
                 <table>
-                    <h4>Customer List</h4> <button class="btn btn-primary" name="btnNew" id="btnNew" onclick="return HandleAddCustomer()"> Add Customer</button>
                     <tr>
                         <th>CustomerId</th>
                         <th>CustomerName</th>
