@@ -24,15 +24,15 @@
 </style>
 <script>
     function HandleAddEquipment() {
-        
+
         $("#dvPartialEntryPanel").dialog({
             resizable: false,
             height: 500,
             width: 1000,
             modal: true,
         });
-       
-        
+
+
         return false;
 
     }
@@ -45,10 +45,19 @@
         });
         return false;
     }
-    
+    function HandleCustomerEquipAssign() {
+        $("#dvPartialCustomerEquipAssign").dialog({
+            resizable: false,
+            height: 500,
+            width: 1000,
+            modal: true,
+        });
+        return false;
+    }
+
 </script>
 <div>
-  
+
 </div>
 <form action="/Home/Dashboard" method="post">
 
@@ -57,8 +66,8 @@
         // get data backend to front through List
         List<BaseEquipment> plsData = (List<BaseEquipment>)ViewBag.plsData;
 
-        <div class="d-flex justify-content-between"  >
-            <div class="col col-sm-8" id="dvTblBorder" style="height: 400px; width: 500px; overflow: auto;">
+        <div class="d-flex justify-content-around">
+            <div class="col col-sm-6" id="dvTblBorder" style="height: 400px; width: 500px; overflow: auto;">
                 <div class="d-flex justify-content-between mb-2">
                     <h4>Equipment List</h4>   <button class="btn btn-primary" name="btnNew" id="btnNew" onclick="return HandleAddEquipment()"> Add Equipment</button>
                 </div>
@@ -76,6 +85,7 @@
                         <th>No</th>
                         <th>Name</th>
                         <th>Count</th>
+                        <th>Stock</th>
                         <th>Entry Date</th>
                     </tr>
                     @foreach (BaseEquipment obj in plsData)
@@ -90,6 +100,7 @@
                                     <td>@obj.EquipmentId</td>
                                     <td>@obj.Name</td>
                                     <td>@obj.EqCount</td>
+                                    <td>@obj.EqStock</td>
                                     <td>@obj.EntryDate.ToString()</td>
                                 </tr>
                             }
@@ -97,30 +108,35 @@
                         }
                         else
                         {
-                            <tr class="trContent">
-                                <td>@obj.EquipmentId</td>
-                                <td>@obj.Name</td>
-                                <td>@obj.EqCount</td>
-                                <td>@obj.EntryDate.ToString()</td>
-                            </tr>
+                <tr class="trContent">
+                    <td>@obj.EquipmentId</td>
+                    <td>@obj.Name</td>
+                    <td>@obj.EqCount</td>
+                    <td>@obj.EqStock</td>
+                    <td>@obj.EntryDate.ToString()</td>
+                </tr>
                         }
                     }
 
 
                 </table>
             </div>
-            <div class="col col-sm-4" id="dvTblBorder" style="height: 400px; width: 500px; overflow: auto; ">
-
+            <div class="col col-sm-6" id="dvTblBorder" style="height: 400px; width: 500px; overflow: auto; ">
+                <div>
+                    <button onclick="return HandleCustomerEquipAssign()">Customer Assign</button>
+                </div>
                 <div class="d-flex justify-content-between mb-2">
                     <h4>Customer List</h4>
                     <button class="btn btn-primary" name="btnNew" id="btnNew" onclick="return HandleAddCustomer()"> Add Customer</button>
                 </div>
-                <table>
+                <table >
                     <tr>
                         <th>CustomerId</th>
                         <th>CustomerName</th>
                         <th>CustomerMobile</th>
+                        <th>EquipmentName</th>
                         <th>EquipCount</th>
+
                     </tr>
                     @{
                         // get data backend to front through DataTable
@@ -137,17 +153,20 @@
                                          CustomerName = p.Field<string>("CustomerName"),
                                          CustomerMobile = p.Field<string>("CustomerMobile"),
                                          EquipCount = p.Field<int>("EquipCount"),
+                                         EquipmentName = p.Field<string>("EquipmentName"),
 
                                      }).ToList();
 
                         foreach (var obj in pdata)
                         {
-                            <tr>
-                                <td>@obj.CustomerId</td>
-                                <td>@obj.CustomerName</td>
-                                <td>@obj.CustomerMobile</td>
-                                <td>@obj.EquipCount</td>
-                            </tr>
+                                        <tr>
+                                            <td>@obj.CustomerId</td>
+                                            <td>@obj.CustomerName</td>
+                                            <td>@obj.CustomerMobile</td>
+                                            <td>@obj.EquipmentName</td>
+                                            <td>@obj.EquipCount</td>
+
+                                        </tr>
                         }
 
                     }
@@ -161,8 +180,8 @@
 
 
 
-        
-        
+
+
 
 
     }
@@ -170,3 +189,4 @@
 @Html.Partial("~/Views/Home/_PartialEquipmentEntry.cshtml")
 
 @Html.Partial("~/Views/Home/_PartialCustomerEntry.cshtml")
+@Html.Partial("~/Views/Home/_PartialEquipCustomerAssign.cshtml")

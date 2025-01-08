@@ -19,6 +19,8 @@ namespace WebApplication2.Models
         [DataMember]
         public int EqCount { get; set; }
         [DataMember]
+        public int EqStock { get; set; }
+        [DataMember]
         //public int No { get; set; }
         public DateTime EntryDate { get; set; }
 
@@ -56,6 +58,7 @@ namespace WebApplication2.Models
                     obj.EquipmentId = Convert.ToInt32(mrd["EquimentId"].ToString());
                     obj.Name = mrd["EquipmentName"].ToString();
                     obj.EqCount= Convert.ToInt32(mrd["Quantity"].ToString());
+                    obj.EqStock= Convert.ToInt32(mrd["Stock"].ToString());
                     obj.EntryDate = Convert.ToDateTime(mrd["EntryDate"].ToString());
                     plsData.Add(obj);
 

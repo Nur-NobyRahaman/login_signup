@@ -189,6 +189,7 @@
     <Content Include="Views\Home\_PartialEquipmentEntry.cshtml" />
     <Content Include="Views\Common\_PartialGlobalMegs.cshtml" />
     <Content Include="Views\Home\_PartialCustomerEntry.cshtml" />
+    <Content Include="Views\Home\_PartialEquipCustomerAssign.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

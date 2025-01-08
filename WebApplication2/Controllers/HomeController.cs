@@ -57,6 +57,18 @@ namespace WebApplication2.Controllers
                     ViewBag.OperationResult = "Save Customer Successfully";
                 }
             }
+            if(btnSubmit == "Save Assignment")
+            {
+                int customerId = Convert.ToInt32(frm["ddlPartialCustomerId"].ToString());
+                int equipmentId = Convert.ToInt32(frm["ddlAssignEquipmentId"].ToString()); 
+                int equipCount = Convert.ToInt32(frm["textPartialEqipQuantity"].ToString());
+                BaseCustomer customer = new BaseCustomer();
+               int result = customer.EquipCustomerAssign(customerId, equipmentId, equipCount);
+                if (result > 0)
+                {
+                    ViewBag.OperationResult = "Save Customer Assign Successfully";
+                }
+            }
             List<BaseEquipment> plsData = BaseEquipment.ListEquipmentData();
             ViewBag.plsData = plsData;
             DataTable dtCustomerEquip = BaseCustomer.ListCustomerEquipment();

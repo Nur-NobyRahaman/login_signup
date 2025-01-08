@@ -130,5 +130,29 @@ namespace WebApplication2.Models
             return result;
         }
 
+        public int EquipCustomerAssign(int CustomerID, int EquipmentID, int EquipCount) {
+
+            String connecting = ConfigurationManager.ConnectionStrings["ConnString"].ConnectionString;
+
+            SqlConnection connection = new SqlConnection(connecting);
+            connection.Open();
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = connection;
+            cmd.CommandText = "spOST_InstEquipAssignment";
+            cmd.Parameters.Clear();
+            cmd.Parameters.Add(new SqlParameter("@CustomerID", CustomerID));
+            cmd.Parameters.Add(new SqlParameter("@EquipmentID", EquipmentID));
+            cmd.Parameters.Add(new SqlParameter("@EquipCount", EquipCount));
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandTimeout = 0;
+
+            int result = cmd.ExecuteNonQuery();
+            cmd.Dispose();
+            connection.Close();
+
+            return result;
+        }
+
     }
 }
