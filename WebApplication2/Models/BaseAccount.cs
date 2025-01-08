@@ -12,6 +12,7 @@ namespace WebApplication2.Models
     {
         public string UserName { get; set; }
         public string Password { get; set; }
+        public string Role { get; set; }
         public bool VerifyLogin()
         {
            
@@ -37,17 +38,23 @@ namespace WebApplication2.Models
             cmd.Dispose();
             connection.Close();
             // link u sintex
-            //var pData = (from p in dataTable.AsEnumerable() 
-            //             where p.Field<string>("Name")==this.UserName && p.Field<string>("Password")==this.Password
-            //             select new
-            //             {
-            //                 UserName=p.Field<string>("Name")
-                            
-            //             } ).SingleOrDefault();
+           
 
 
             if (dataTable.Rows.Count  > 0)
             {
+                var pData = (from p in dataTable.AsEnumerable()
+                             where p.Field<string>("Name") == this.UserName && p.Field<string>("Password") == this.Password
+                             select new
+                             {
+                                 UserName = p.Field<string>("Name"),
+                                 Role = p.Field<string>("ServiceType")
+
+                             }).ToList();
+                foreach (var obj in pData) { 
+                    this.UserName = obj.UserName;
+                    this.Role = obj.Role;
+                }
                 return true;
             }
             return false;

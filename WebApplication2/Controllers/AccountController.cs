@@ -30,6 +30,8 @@ namespace WebApplication2.Controllers
                     if (verifyStatus)
                     {
                         Session["user"] = baseAccount.UserName;
+                        Session["Role"] = baseAccount.Role;
+                        ViewBag.Role = baseAccount.Role.ToString();
                         LoginMegs = "Login Successfully";
                         //return RedirectToAction("Dashboard", "Home");
                     }

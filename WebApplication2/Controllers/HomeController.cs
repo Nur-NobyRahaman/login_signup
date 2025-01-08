@@ -17,7 +17,7 @@ namespace WebApplication2.Controllers
         }
         public ActionResult Dashboard()
         {
-            if (Session["user"] != null)
+            if (Session["Role"].ToString() == "Admin")
             {
 
                 List<BaseEquipment> plsData = BaseEquipment.ListEquipmentData();

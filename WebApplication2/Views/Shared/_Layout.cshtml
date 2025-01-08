@@ -77,10 +77,24 @@
     <div id="dvLeftBar" style=" width: 200px; position: fixed; left: 0px; top: 56px; bottom: 0px; background-color: darkslategrey">
         <div style="padding:5px; color:white">
             <ul>
-                <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                <li>@Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                <li>@Html.ActionLink("Dashboard", "Dashboard", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                @{
+                    if (Session["Role"] != null)
+                    {
+                        if (Session["Role"].ToString() == "Admin")
+                        {
+                            <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                            <li>@Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                            <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                            <li>@Html.ActionLink("Dashboard", "Dashboard", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                        }
+
+                        else
+                        {
+                            <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                        }
+                    }
+                }
+
             </ul>
         </div>
     </div>

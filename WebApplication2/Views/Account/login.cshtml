@@ -22,6 +22,9 @@
 
     <script>
         var loginMegs = '@ViewBag.loginMegs';
+        var role = '@ViewBag.Role';
+        console.log(role)
+        //var role = Session["Role"] != null ? Session["Role"].ToString() : string.Empty;
 
         $(document).ready(function () {
             if (loginMegs != "") {
@@ -34,8 +37,15 @@
             }
 
             if (loginMegs == "Login Successfully") {
-                setTimeout(function(){
-                     window.location.href='@Url.Action("Dashboard","Home")'
+                setTimeout(function () {
+                     //window.location.href = '@Url.Action("Dashboard","Home")'
+                    if (role == "Admin") {
+                       window.location.href = '@Url.Action("Dashboard", "Home")'
+                    }
+                    else {
+                          window.location.href = '@Url.Action("Contact","Home")'
+                    }
+
                 },1000)
 
             }
