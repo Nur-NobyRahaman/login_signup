@@ -97,6 +97,28 @@
 
             </ul>
         </div>
+        @*<div style="padding:5px; color:white">
+            <ul>
+                @{
+                    if (Session["Role"] != null)
+                    {
+                        if (Session["Role"].ToString() == "Admin")
+                        {
+                            <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                            <li>@Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                            <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                            <li>@Html.ActionLink("Dashboard", "Dashboard", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                        }
+
+                        else
+                        {
+                            <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                        }
+                    }
+                }
+
+            </ul>
+        </div>*@
     </div>
     <div id="dvContentWapper" style=" position:fixed; left:200px;right:0px;top:56px;bottom:0px; background-color:antiquewhite; overflow:auto">
         <div class="container body-content">
